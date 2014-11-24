@@ -8,7 +8,7 @@ Objective
 
 Every node in the cluster will have an agent running at a frequency depending upon the overall load of the cluster. The agent deducts (initial score is 100) scores the node based on available resources like CPU wait time, load-average, available RAM, swapiness etc. These can be tunable by predefining thresholds like 20% of the total CPU time is acceptible as a normal wait time for a particular node. The better the score is, the lower the load on that particular node. There is a plan to keep heuristics as well, to make the scoring process a bit smarter over the time by manipulating the thresholds automatically.
 
-After the agent assigns a score to a particular node, it sends that score (along with the trend data, but probably less frequently) over to the load balancer through simple HTTP API
+After the agent assigns a score to a particular node, it sends that score (along with the trend data, but probably less frequently) over to the load balancer through QPID (v0.30) messaging in JSON format
 
 The load-balancer keeps a queue of all the nodes reverse-sorted based on their scores, i.e the node with highest score will be put in front of the queue and will be scheduled for the next connection, in case this node does not respond, next node in the queue will be considered.
 
