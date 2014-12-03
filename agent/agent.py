@@ -2,7 +2,7 @@
 
 import sys, os, socket, time
 import json
-from qpid.messaging import *
+#from qpid.messaging import *
 import checkmem, checkio, score
 
 
@@ -56,8 +56,8 @@ def main():
 
 	data['node'] = fqdn
 	json_str = json.dumps(data)
-	send_msg(json_str)
-	#print json_str
+	#send_msg(json_str)
+	print json_str
 
 if __name__ == '__main__':
 	main()
